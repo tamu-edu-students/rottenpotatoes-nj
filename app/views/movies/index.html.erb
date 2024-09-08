@@ -3,14 +3,54 @@
 <% content_for :title, "Movies" %>
 
 <h1>Movies</h1>
+<head>
 
-<div id="movies">
-  <% @movies.each do |movie| %>
-    <%= render movie %>
-    <p>
-      <%= link_to "Show this movie", movie %>
-    </p>
-  <% end %>
-</div>
+  <style>
+    table {
+      width: 75% ;
+    }
+    th {
+      border: 2px solid #333;
+      text-align: center
+      padding: 20px
+      font-weight: bold;
+    }
+    td {
+      border: 1px solid #ddd;
+      text-align: center
+    }
+    tfoot { 
+    font-weight: bold; 
+}
+  
 
-<%= link_to "New movie", new_movie_path %>
+  </style
+</head>
+<table>
+  <thead>
+    <tr>
+        <th> Title </th>
+        <th> Rating </th>
+        <th> Release date </th>
+        <th> Show this movie </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <div id="movies">
+    <% @movies.each do |movie| %>
+      <%= render movie %>
+    <% end %>
+  </div>   
+  </tbody>
+
+  <tfoot>
+    <tr> 
+        <td colspan="4"> <%= link_to "New movie", new_movie_path %> </td>
+    </tr>
+  </tfoot>
+</table>
+
+
+
+

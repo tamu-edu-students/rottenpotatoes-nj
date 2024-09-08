@@ -22,11 +22,11 @@ more_movies = [
     :release_date => '13-Aug-2021'},
   {:title => 'GOAT', :rating => 'U/A',
     :release_date => '5-Sep-2024'},
-  {:title => 'MASTER', :rating => 'U/A',
+  {:title => 'Master', :rating => 'U/A',
     :release_date => '18-Aug-2022'},
-  {:title => 'GHILLI', :rating => 'U',
+  {:title => 'Ghilli', :rating => 'U',
     :release_date => '18-Oct-2005'},
-  {:title => 'BEAST', :rating => 'U/A',
+  {:title => 'Beast', :rating => 'U/A',
     :release_date => '18-Dec-2023'}
   
 ]

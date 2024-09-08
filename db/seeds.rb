@@ -19,9 +19,29 @@ more_movies = [
   {:title => 'Nomadland', :rating => 'R',
     :release_date => '19-Feb-2021'},
   {:title => 'CODA', :rating => 'PG-13',
-    :release_date => '13-Aug-2021'}
+    :release_date => '13-Aug-2021'},
+  {:title => 'GOAT', :rating => 'U/A',
+    :release_date => '5-Sep-2024'},
+  {:title => 'MASTER', :rating => 'U/A',
+    :release_date => '18-Aug-2022'},
+  {:title => 'GHILLI', :rating => 'U',
+    :release_date => '18-Oct-2005'},
+  {:title => 'BEAST', :rating => 'U/A',
+    :release_date => '18-Dec-2023'}
+  
 ]
 
+
+def update_or_create_movie(attributes)
+    movie = Movie.find_by(title: attributes[:title])
+    
+    if movie
+      movie.update(attributes)
+    else
+      Movie.create!(attributes)
+    end
+end
+  
 more_movies.each do |movie|
-  Movie.create!(movie)
+  update_or_create_movie(movie)
 end

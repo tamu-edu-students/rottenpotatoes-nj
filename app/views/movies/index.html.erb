@@ -3,6 +3,8 @@
 <% content_for :title, "Movies" %>
 
 <h1>Movies</h1>
+
+
 <head>
 
   <style>
@@ -23,16 +25,55 @@
     font-weight: bold; 
 }
   
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
 
+.button:hover {
+  background-color: #0056b3;
+}
   </style
 </head>
+
+<% if params[:attribute].present? && params[:order].present? %>
+  <div id="sort-message" class="alert">
+    Items are sorted by <%= params[:attribute].humanize %> in <%= params[:order].humanize %> order.
+  </div>
+<% end %>
+
 <table>
   <thead>
     <tr>
-        <th> Title </th>
-        <th> Rating </th>
-        <th> Release date </th>
-        <th> Show this movie </th>
+
+      <th>
+        <%= link_to 'Title', movies_path(attribute: 'title', order: params[:order] == 'asc' ? 'desc' : 'asc') %>
+        <% if params[:attribute] == 'title' %>
+          <%= params[:order] == 'asc' ? '▲' : '▼' %>
+        <% end %>
+      </th>
+      <th>
+        <%= link_to 'Rating', movies_path(attribute: 'rating', order: params[:order] == 'asc' ? 'desc' : 'asc') %>
+        <% if params[:attribute] == 'rating' %>
+          <%= params[:order] == 'asc' ? '▲' : '▼' %>
+        <% end %>
+      </th>
+      <th>
+        <%= link_to 'Release Date', movies_path(attribute: 'release_date', order: params[:order] == 'asc' ? 'desc' : 'asc') %>
+        <% if params[:attribute] == 'release_date' %>
+          <%= params[:order] == 'asc' ? '▲' : '▼' %>
+        <% end %>
+      </th>
+
+
+      <th> Show this movie </th>
     </tr>
   </thead>
 
@@ -50,6 +91,8 @@
     </tr>
   </tfoot>
 </table>
+
+
 
 
 

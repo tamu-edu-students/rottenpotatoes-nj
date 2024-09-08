@@ -2,8 +2,14 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: %i[ show edit update destroy ]
 
   # GET /movies or /movies.json
+
   def index
-    @movies = Movie.all
+    # Fetch sorting parameters from the URL
+    sort_attribute = params[:attribute] || 'title'
+    sort_order = params[:order] || 'asc'
+
+    # Fetch and sort movies based on parameters
+    @movies = Movie.sorted_by(sort_attribute, sort_order)
   end
 
   # GET /movies/1 or /movies/1.json
@@ -19,6 +25,9 @@ class MoviesController < ApplicationController
   def edit
   end
 
+  def sort
+    
+  end
   # POST /movies or /movies.json
   def create
     @movie = Movie.new(movie_params)
@@ -66,5 +75,11 @@ class MoviesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def movie_params
       params.require(:movie).permit(:title, :rating, :description, :release_date)
+    end
+
+    def sort
+      respond_to do |format|
+        format.html { redirect_to movies_url, notice: "Sorting is yet to be done" }
+      end
     end
 end

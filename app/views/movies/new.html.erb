@@ -1,11 +1,65 @@
 <% content_for :title, "New movie" %>
 
-<h1>New movie</h1>
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Styled Page</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+
+    /* Header Style */
+    header {
+      background-color: #004D98; /* Deep blue background */
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+    }
+
+    /* Main Content Style */
+    .content {
+      padding: 20px;
+      background-color: #F5F5F5; /* Light grey background */
+    }
+
+    /* Footer Style */
+    footer {
+      background-color: #D97B9A; /* Light red background */
+      color: white;
+      text-align: center;
+      padding: 10px;
+      width: 100%;
+      bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>New movie</h1>
+  </header>
+
+  <div class="content">
+    <h2>Main Content</h2>
+
+    
 <%= render "form", movie: @movie %>
 
 <br>
 
-<div>
-  <%= link_to "Back to movies", movies_path %>
+    </div>
+
+  <footer>
+
+  <div>
+  <%= link_to "Back to movies", movies_path(attribute: params[:attribute], order: params[:order]) %>
 </div>
+
+
+  </footer>
+</body>
+

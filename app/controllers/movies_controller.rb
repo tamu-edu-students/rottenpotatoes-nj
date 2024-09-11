@@ -5,11 +5,11 @@ class MoviesController < ApplicationController
 
   def index
     # Fetch sorting parameters from the URL
-    sort_attribute = params[:attribute] || 'title'
-    sort_order = params[:order] || 'asc'
+    @attribute = params[:attribute] || 'title'
+    @order = params[:order] || 'asc'
 
     # Fetch and sort movies based on parameters
-    @movies = Movie.sorted_by(sort_attribute, sort_order)
+    @movies = Movie.sorted_by(@attribute, @order)
   end
 
   # GET /movies/1 or /movies/1.json
@@ -25,9 +25,7 @@ class MoviesController < ApplicationController
   def edit
   end
 
-  def sort
-    
-  end
+ 
   # POST /movies or /movies.json
   def create
     @movie = Movie.new(movie_params)
@@ -58,10 +56,11 @@ class MoviesController < ApplicationController
 
   # DELETE /movies/1 or /movies/1.json
   def destroy
+    @movie = Movie.find(params[:id])
     @movie.destroy!
 
     respond_to do |format|
-      format.html { redirect_to movies_url, notice: "Movie was successfully destroyed." }
+      format.html { redirect_to movies_path(attribute: @attribute, order: @order), notice: "Movie was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -77,9 +76,4 @@ class MoviesController < ApplicationController
       params.require(:movie).permit(:title, :rating, :description, :release_date)
     end
 
-    def sort
-      respond_to do |format|
-        format.html { redirect_to movies_url, notice: "Sorting is yet to be done" }
-      end
-    end
 end

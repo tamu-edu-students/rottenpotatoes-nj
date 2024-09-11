@@ -4,7 +4,6 @@
 
 <h1>Movies</h1>
 
-
 <head>
 
   <style>
@@ -25,23 +24,64 @@
     font-weight: bold; 
 }
   
-.button {
+.sort-button {
   display: inline-block;
   padding: 10px 20px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #007bff;
+  background-color: #f39c12; /* Yellow */
+  color: white;
   border: none;
   border-radius: 5px;
-  text-align: center;
   cursor: pointer;
+  font-size: 16px;
+  text-align: center;
 }
 
-.button:hover {
-  background-color: #0056b3;
+.sort-button:hover {
+  background-color: #e67e22; /* Darker orange for hover effect */
 }
+
+.hidden-text {
+  display: none;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.highlight-asc {
+  background-color: #7BAFD4; /* Light green */
+}
+
+.highlight-desc {
+  background-color: #D97B9A; /* Light red */
+}
+
+/* CSS file or <style> block */
+body {
+  background: linear-gradient(to right, #7BAFD4, #D97B9A); /* Light blue to light red gradient */
+  color: #333; /* Darker text color for better readability against the lighter background */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+
+
+}
+
+.content {
+      position: relative;
+      padding: 20px;
+      background: white; /* Background for content area */
+}
+
+
   </style
 </head>
+
+
+
+<div class="content">
 
 <% if params[:attribute].present? && params[:order].present? %>
   <div id="sort-message" class="alert">
@@ -49,23 +89,25 @@
   </div>
 <% end %>
 
+
 <table>
   <thead>
     <tr>
 
-      <th>
+      <th id="column-header" class="<%= params[:attribute] == 'title' && params[:order] == 'asc' ? 'highlight-asc' : params[:attribute] == 'title' && params[:order] == 'desc' ? 'highlight-desc' : '' %>">
+
         <%= link_to 'Title', movies_path(attribute: 'title', order: params[:order] == 'asc' ? 'desc' : 'asc') %>
         <% if params[:attribute] == 'title' %>
           <%= params[:order] == 'asc' ? '▲' : '▼' %>
         <% end %>
       </th>
-      <th>
+      <th id="column-header" class="<%= params[:attribute] == 'rating' && params[:order] == 'asc' ? 'highlight-asc' : params[:attribute] == 'rating' && params[:order] == 'desc' ? 'highlight-desc' : '' %>" >
         <%= link_to 'Rating', movies_path(attribute: 'rating', order: params[:order] == 'asc' ? 'desc' : 'asc') %>
         <% if params[:attribute] == 'rating' %>
           <%= params[:order] == 'asc' ? '▲' : '▼' %>
         <% end %>
       </th>
-      <th>
+      <th id="column-header" class="<%= params[:attribute] == 'release_date' && params[:order] == 'asc' ? 'highlight-asc' : params[:attribute] == 'release_date' && params[:order] == 'desc' ? 'highlight-desc' : '' %>" >
         <%= link_to 'Release Date', movies_path(attribute: 'release_date', order: params[:order] == 'asc' ? 'desc' : 'asc') %>
         <% if params[:attribute] == 'release_date' %>
           <%= params[:order] == 'asc' ? '▲' : '▼' %>
@@ -87,10 +129,35 @@
 
   <tfoot>
     <tr> 
-        <td colspan="4"> <%= link_to "New movie", new_movie_path %> </td>
+        <td colspan="4"> <%= link_to "New movie", new_movie_path(attribute: params[:attribute], order: params[:order]) %> </td>
     </tr>
   </tfoot>
 </table>
+
+
+</div>
+<!-- Add this in app/views/movies/index.html.erb, or in a dedicated JS file -->
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const button = document.getElementById('toggle-button');
+  const text = document.getElementById('toggle-text');
+
+  button.addEventListener('click', () => {
+    if (text.style.display === 'none' || text.style.display === '') {
+      text.style.display = 'block'; // Show text
+    } else {
+      text.style.display = 'none';  // Hide text
+    }
+  });
+});
+</script>
+
+<button id="toggle-button" class="sort-button">Sort</button>
+<div id="toggle-text" class="hidden-text">
+  Click on the attribute based on which you would like the data to be sorted, click on it again to change the sorting order.
+</div>
+
 
 
 

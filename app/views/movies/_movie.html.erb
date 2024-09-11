@@ -2,9 +2,15 @@
 <div id="<%= dom_id movie %>">
 
 <tr>
-    <td> <%= movie.title %> </td> 
-    <td> <%= movie.rating %> </td> 
-    <td> <%= movie.release_date %> </td> 
+    <td class="<%= params[:attribute] == 'title' && params[:order] == 'asc' ? 'highlight-asc' : params[:attribute] == 'title' && params[:order] == 'desc' ? 'highlight-desc' : '' %>">
+        <%= movie.title %> 
+    </td> 
+    <td class="<%= params[:attribute] == 'rating' && params[:order] == 'asc' ? 'highlight-asc' : params[:attribute] == 'rating' && params[:order] == 'desc' ? 'highlight-desc' : '' %>">
+        <%= movie.rating %> 
+    </td> 
+    <td class="<%= params[:attribute] == 'release_date' && params[:order] == 'asc' ? 'highlight-asc' : params[:attribute] == 'release_date' && params[:order] == 'desc' ? 'highlight-desc' : '' %>">
+        <%= movie.release_date %> 
+    </td> 
     <td> <%= link_to "Click here", movie %> </td> 
 </tr>
 

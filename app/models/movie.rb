@@ -1,2 +1,6 @@
 class Movie < ActiveRecord::Base
-end
+    def self.sort_based(attribute, order)                 
+      order("#{attribute} #{order}")
+    end
+  end
+  

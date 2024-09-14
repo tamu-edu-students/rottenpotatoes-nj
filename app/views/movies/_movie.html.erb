@@ -1,11 +1,31 @@
+<% if local_assigns[:separate] %>
+  <div id="<%= dom_id movie %>">
+    <p>Title: <%= movie.title %></p>
+    <p>Rating: <%= movie.rating %></p>
+    <p>Release Date: <%= movie.release_date %></p>
+    <p>Description: <%= movie.description %></p>
+  </div>
+<% else %>
+
 
 <div id="<%= dom_id movie %>">
 
 <tr>
-    <td> <%= movie.title %> </td>
-    <td> <%= movie.rating %> </td>
-    <td> <%= movie.release_date %> </td>
-    <td> <%= link_to "Click here", movie %> </td>
+    <td class="<%= params[:attribute] == 'title' && params[:order] == 'asc' ? 'order-asc' : params[:attribute] == 'title' && params[:order] == 'desc' ? 'order-desc' : '' %>">
+        <%= movie.title %> 
+    </td> 
+    
+    <td class="<%= params[:attribute] == 'rating' && params[:order] == 'asc' ? 'order-asc' : params[:attribute] == 'rating' && params[:order] == 'desc' ? 'order-desc' : '' %>">
+        <%= movie.rating %> 
+    </td> 
+    
+    <td class="<%= params[:attribute] == 'release_date' && params[:order] == 'asc' ? 'order-asc' : params[:attribute] == 'release_date' && params[:order] == 'desc' ? 'order-desc' : '' %>">
+        <%= movie.release_date %> 
+    </td> 
+    
+    <td> <%= link_to "Click here", movie %> </td> 
 </tr>
 
 </div>
+
+<% end %>

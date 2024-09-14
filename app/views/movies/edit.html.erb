@@ -1,12 +1,59 @@
-<% content_for :title, "Editing movie" %>
+<head>
+  <style>
+    body {
+      margin: 0;
+      color: #333;
+    }
 
-<h1>Editing movie</h1>
+    header {
+      background-color: #004D98;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      font-size : 20px
+    }
 
-<%= render "form", movie: @movie %>
+    .content {
+      padding: 20px;
+      background-color: #F5F5F5;
+      font-size : 20px
+    }
 
-<br>
+    footer {
+      background-color: #D97B9A;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      width: 100%;
+      font-size : 20px
+    }
+  </style>
+</head>
 
-<div>
+
+
+<body>
+  <header>
+  <% content_for :title, "EDIT MOVIE" %>
+
+  <h1>Editing movie</h1>
+
+  </header>
+
+  <div class="content">
+  <%= render "form", movie: @movie %>
+
+  <br>
+
+  </div>
+
+  <footer>
+  <div>
   <%= link_to "Show this movie", @movie %> |
   <%= link_to "Back to movies", movies_path %>
 </div>
+
+
+  </footer>
+</body>
+</html>

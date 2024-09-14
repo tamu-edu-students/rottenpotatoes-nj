@@ -1,10 +1,61 @@
-<p style="color: green"><%= notice %></p>
+<head>
+  <style>
+    body {
+      margin: 0;
+      color: #333;
+    }
 
-<%= render @movie %>
+    header {
+      background-color: #004D98;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      font-size : 20px
 
-<div>
+    }
+
+    .content {
+      padding: 20px;
+      background-color: #F5F5F5;
+      font-size : 20px
+    }
+
+    footer {
+      background-color: #D97B9A;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      width: 100%;
+      font-size : 20px
+
+    }
+
+    
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SHOW MOVIE</h1>
+  </header>
+
+  <div class="content">
+
+    <p style="color: green"><%= notice %></p>
+
+    <%= render partial: "movies/movie", locals: { movie: @movie, separate: true } %>
+
+  </div>
+
+  <footer>
+
+  <div>
+  <br>
   <%= link_to "Edit this movie", edit_movie_path(@movie) %> |
-  <%= link_to "Back to movies", movies_path %>
-
+  <%= link_to "Back to movies", movies_path(attribute: params[:attribute], order: params[:order]), class: 'button' %>
+  <br>
+  <br>
   <%= button_to "Destroy this movie", @movie, method: :delete %>
 </div>
+
+  </footer>
+</body>

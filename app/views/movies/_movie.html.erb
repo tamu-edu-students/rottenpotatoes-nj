@@ -23,7 +23,8 @@
         <%= movie.release_date %> 
     </td> 
     
-    <td> <%= link_to "Click here", movie %> </td> 
+    <td> <%= link_to "Click here", movie_path(movie, attribute: params[:attribute], order: params[:order]) %> </td>
+
 </tr>
 
 </div>

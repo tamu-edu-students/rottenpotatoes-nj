@@ -1,4 +1,4 @@
-<%= form_with(model: movie) do |form| %>
+<%= form_with(model: movie, url: movie.persisted? ? movie_path(movie, attribute: params[:attribute], order: params[:order]) : movies_path(attribute: params[:attribute], order: params[:order])) do |form| %>
   <% if movie.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
@@ -29,6 +29,11 @@
   <div>
     <%= form.label :release_date, style: "display: block" %>
     <%= form.text_field :release_date %>
+  </div>
+
+  <div>
+    <%= form.hidden_field :attribute, value: params[:attribute] %>
+    <%= form.hidden_field :order, value: params[:order] %>
   </div>
 
   <div>

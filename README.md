@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Link to Heroku application
+https://rottenpotatoes-nj-b3e05b3373ef.herokuapp.com
